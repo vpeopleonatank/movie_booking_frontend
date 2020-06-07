@@ -78,9 +78,9 @@ class AccountPanel extends Component {
     return (
       <div className={classes.root}>
         {AdminButton}
-        <Link to="/status" style={{ textDecoration: "none" }}>
-          <Button className={classes.buttonStyle}>status</Button>
-        </Link>
+        {/*<Link to="/status" style={{ textDecoration: "none" }}>*/}
+        {/*  <Button className={classes.buttonStyle}>status</Button>*/}
+        {/*</Link>*/}
         {LoginLogout}
         {RegisterName}
       </div>

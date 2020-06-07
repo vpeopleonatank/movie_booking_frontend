@@ -342,6 +342,16 @@ class MovieDetail extends Component {
     this.props.movieActions.viewMovie()
   }
 
+  handleBookMovie() {
+    var _id = this.props.movie._id;
+    var idNum = parseInt(_id, 16);
+    console.log(this.props.movie);
+  }
+
+  nextPath(path) {
+    this.props.history.push(path);
+  }
+
   matrixInterval = null
 
   render() {
@@ -489,7 +499,8 @@ class MovieDetail extends Component {
               </Button>
             </div>
             <div className={classes.watchButton}>
-              <Button className={classes.button} onClick={this.handleViewClick}>
+              {/*<Button className={classes.button} onClick={this.handleBookMovie()}>*/}
+                <Button className={classes.button} onClick={() => this.nextPath('/booking')}>
                 book ticket
               </Button>
             </div>
