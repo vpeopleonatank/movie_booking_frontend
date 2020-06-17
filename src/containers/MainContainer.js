@@ -26,6 +26,7 @@ import PersonalInfo from "../components/bookingComponents/PersonalInfo";
 import Confirmation from "../components/bookingComponents/Confirmation";
 import RegionSelection from "../components/bookingComponents/RegionSelection";
 import MovieSelection from "../components/bookingComponents/MovieSelection";
+import MovieSchedule from "./MovieSchedule";
 
 class MainContainer extends Component {
   render() {
@@ -41,6 +42,7 @@ class MainContainer extends Component {
             redirectRoute="/login"
           />
           <Route exact path="/" component={MovieGrid}/>
+          <Route exact path="/phim-chieu-theo-gio" component={MovieSchedule}/>
           <Route exact path="/movies/id/:id" component={MovieDetail}/>
           <Route exact path="/country-results" component={CountryResults}/>
           {/*<Route exact path="/booking" component={Navigation}/>*/}

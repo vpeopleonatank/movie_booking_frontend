@@ -29,7 +29,7 @@ export function fetchMovies() {
     })
       .then(response => response.json())
       .then(json => dispatch(receivedMovies(json)))
-      .catch(e => dispatch(fetchMoviesError(e.message)))
+      // .catch(e => dispatch(fetchMoviesError(e.message)))
   }
 }
 
@@ -44,6 +44,7 @@ export function searchMovies(subfield, search, history) {
       query = `cast=${encodedSearch}`
       break
     default:
+
       query = `text=${encodedSearch}`
   }
   if (useFacets && subfield === "cast") {
@@ -151,6 +152,7 @@ export function paginate(currState, currPage, filters) {
       )
       query = "?" + query.join("&") + `&page=${currPage + 1}`
     } else {
+
       query = `?page=${currPage + 1}`
     }
     if (Object.keys(filters).includes("cast") && useFacets) {
@@ -158,6 +160,8 @@ export function paginate(currState, currPage, filters) {
     } else {
       url = `/api/v1/movies/search${encodeURI(query)}`
     }
+    console.log('currPage paginate', currPage);
+    console.log('url la ', url);
     return request(url, {
       method: "GET",
       mode: "cors",
@@ -174,7 +178,10 @@ export function receivedPagination(currState, currPage, json, dispatch) {
   let movies = json.movies.filter(movie => !currentMovies.includes(movie._id))
   movies = [...currState, ...movies]
   let page = movies.length > currState.length ? json.page : currPage
+  console.log('page ', page);
+  console.log('currPage', currPage);
   if (page !== currPage) {
+    console.log('page != currPage');
     return {
       type: types.RECEIVED_PAGINATION,
       ...json,

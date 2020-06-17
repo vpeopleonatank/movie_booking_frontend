@@ -15,7 +15,7 @@ const mongoGrey = grey[900]
 const styles = theme => ({
   buttonStyle: {
     margin: theme.spacing.unit - 2,
-    height: "18px",
+    height: "36px",
     color: "white",
     background: mongoGrey,
   },

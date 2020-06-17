@@ -85,12 +85,12 @@ const styles = {
     height: "444px",
   },
   watchButton: {
-    margin: "8px",
+    margin: "5px",
     color: "white",
     alignItems: "center",
   },
   button: {
-    height: "18px",
+    height: "36px",
     color: "white",
     background: mongo,
   },
@@ -500,7 +500,7 @@ class MovieDetail extends Component {
             </div>
             <div className={classes.watchButton}>
               {/*<Button className={classes.button} onClick={this.handleBookMovie()}>*/}
-                <Button className={classes.button} onClick={() => this.nextPath('/booking')}>
+              <Button className={classes.button} onClick={() => this.nextPath('/booking')}>
                 book ticket
               </Button>
             </div>

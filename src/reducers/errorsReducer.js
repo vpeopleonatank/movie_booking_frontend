@@ -22,10 +22,12 @@ const initialState = {
   fetchMovieByIDErrMsg: ""
 };
 
+let newState = {};
+
 export default function errors(state = initialState, action) {
   switch (action.type) {
     case CLEAR_ERROR:
-      let newState = {
+      newState = {
         ...state,
         [action.key]: ""
       };

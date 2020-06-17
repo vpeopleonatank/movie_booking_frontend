@@ -123,6 +123,7 @@ export default function movie(state = initialState, action) {
         movie: state.movies.filter(elem => elem._id === action.movie).pop()
       }
     case RECEIVED_MOVIES:
+      console.log(action);
       return {
         ...state,
         movies: action.movies,

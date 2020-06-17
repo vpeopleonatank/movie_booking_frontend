@@ -39,7 +39,7 @@ const styles = {
     color: mongo,
     fontWeight: "600",
     lineHeight: "1.125",
-    marginLeft: "270px",
+    marginLeft: "100px",
     fontFamily:
       "BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif",
   },

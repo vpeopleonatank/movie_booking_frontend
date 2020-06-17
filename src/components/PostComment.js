@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   buttonSubmit: {
     margin: theme.spacing.unit - 2,
-    height: "18px",
+    height: "36px",
     color: "white",
     background: green[500],
   },

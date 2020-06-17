@@ -61,7 +61,7 @@ const styles = theme => ({
   bar: {},
   buttonSave: {
     margin: theme.spacing.unit - 2,
-    height: "18px",
+    height: "36x",
     color: "white",
     background: green[500],
   },
