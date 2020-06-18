@@ -65,6 +65,15 @@ const selectedMovieReducer = (selectedMovie = '', action) => {
   }
 }
 
+const selectedCurrentDate = (currDate = '', action) => {
+  switch (action.type) {
+    case 'CURRENT_DATE':
+      return action.payload;
+    default:
+      return currDate;
+  }
+}
+
 const scheduleReducer = (schedule = [], action) => {
   switch (action.type) {
     case 'FETCH_SCHEDULE':
@@ -148,6 +157,7 @@ export default function configureStore() {
       genres: genreReducer,
       externalId: externalIdReducer,
       selectedMovie: selectedMovieReducer,
+      currentDate: selectedCurrentDate,
       schedule: scheduleReducer,
       selectedShowing: selectedShowingReducer,
       tickets: ticketsReducer,

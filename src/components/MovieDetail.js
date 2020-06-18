@@ -498,12 +498,12 @@ class MovieDetail extends Component {
                 watch movie
               </Button>
             </div>
-            <div className={classes.watchButton}>
-              {/*<Button className={classes.button} onClick={this.handleBookMovie()}>*/}
-              <Button className={classes.button} onClick={() => this.nextPath('/booking')}>
-                book ticket
-              </Button>
-            </div>
+            {/*<div className={classes.watchButton}>*/}
+            {/*  /!*<Button className={classes.button} onClick={this.handleBookMovie()}>*!/*/}
+            {/*  <Button className={classes.button} onClick={() => this.nextPath('/booking')}>*/}
+            {/*    book ticket*/}
+            {/*  </Button>*/}
+            {/*</div>*/}
             {genres}
             {cast}
             {writers}

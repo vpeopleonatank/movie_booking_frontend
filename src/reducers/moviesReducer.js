@@ -9,7 +9,7 @@ import {
   BEGIN_PAGING,
   PROP_FACET_FILTER,
   SUBMIT_COMMENT_SUCCESS,
-  UPDATE_COMMENT_SUCCESS
+  UPDATE_COMMENT_SUCCESS, RECEIVED_MOVIES_SCHEDULE, MOVIE_SCHEDULE
 } from "../actions/actionTypes"
 
 const initialState = {
@@ -122,6 +122,11 @@ export default function movie(state = initialState, action) {
         ...state,
         movie: state.movies.filter(elem => elem._id === action.movie).pop()
       }
+    case MOVIE_SCHEDULE:
+      return {
+        ...state,
+        movie: state.movies.filter(elem => elem._id === action.movie).pop()
+      }
     case RECEIVED_MOVIES:
       console.log(action);
       return {
@@ -132,6 +137,11 @@ export default function movie(state = initialState, action) {
         entries_per_page: action.entries_per_page,
         total_results: action.total_results,
         shownMovies: applyFacetFilters(action.movies, state.facetFilters)
+      }
+    case RECEIVED_MOVIES_SCHEDULE:
+      return {
+        ...state,
+        movies: action.movies
       }
     case RECEIVED_SEARCH_RESULTS:
       return {

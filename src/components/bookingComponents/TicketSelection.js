@@ -60,7 +60,7 @@ class TicketSelection extends React.Component {
     var curr = this.currency(this.props.region);
     return (
       <div className="container" id="tickets-box" style={{backgroundColor: 'rgba(34,34,34,0.3)'}}>
-        <NavLink className="arrowleft" to="/booking/schedule"> <i className="fas fa-angle-double-left"> </i></NavLink>
+        {/*<NavLink className="arrowleft" to="/booking/schedule"> <i className="fas fa-angle-double-left"> </i></NavLink>*/}
         <h1>Choose your tickets here</h1>
         <form id="tickets-info" onSubmit={(e) => this.onFormSubmit(e)}>
           <div className="ticket-field">

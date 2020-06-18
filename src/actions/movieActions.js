@@ -1,24 +1,34 @@
 import * as types from "./actionTypes"
 import request from "./request"
 
-const { useFacets } = window.mflix || {
+const {useFacets} = window.mflix || {
   useFacets: false,
 }
 
 export function viewMovie() {
-  return { type: types.VIEW_MOVIE }
+  return {type: types.VIEW_MOVIE}
 }
 
 export function receivedMovies(json) {
-  return { type: types.RECEIVED_MOVIES, ...json }
+  return {type: types.RECEIVED_MOVIES, ...json}
 }
 
+export function receivedMoviesSchedule(json) {
+  return {type: types.RECEIVED_MOVIES_SCHEDULE, ...json}
+}
+
+
 export function receivedSearchResults(json) {
-  return { type: types.RECEIVED_SEARCH_RESULTS, ...json }
+  return {type: types.RECEIVED_SEARCH_RESULTS, ...json}
 }
 
 export function movieDetail(movie) {
-  return { type: types.MOVIE_DETAIL, movie: movie }
+  return {type: types.MOVIE_DETAIL, movie: movie}
+}
+
+
+export function movieSchedule(movie) {
+  return {type: types.MOVIE_SCHEDULE, movie: movie}
 }
 
 export function fetchMovies() {
@@ -28,10 +38,24 @@ export function fetchMovies() {
       mode: "cors",
     })
       .then(response => response.json())
-      .then(json => dispatch(receivedMovies(json)))
-      // .catch(e => dispatch(fetchMoviesError(e.message)))
+      .then(json => dispatch(receivedMoviesSchedule(json)))
+    .catch(e => dispatch(fetchMoviesError(e.message)))
   }
 }
+
+export function fetchMoviesSchedule(date, start, end) {
+  let query = `date=${date}&startTime=${start}&endTime=${end}`
+  return dispatch => {
+    return fetch(`/api/v1/schedule/getschedulewithidmovie?${query}`, {
+      method: "GET",
+      mode: "cors",
+    })
+      .then(response => response.json())
+      .then(json => dispatch(receivedMoviesSchedule(json)))
+    // .catch(e => dispatch(fetchMoviesError(e.message)))
+  }
+}
+
 
 export function searchMovies(subfield, search, history) {
   let query
@@ -89,7 +113,7 @@ export function searchCountries(search, history) {
 }
 
 export function receivedCountryResults(titles) {
-  return { type: types.RECEIVED_COUNTRY_RESULTS, titles }
+  return {type: types.RECEIVED_COUNTRY_RESULTS, titles}
 }
 
 export function searchCountriesError(e) {
@@ -100,7 +124,7 @@ export function searchCountriesError(e) {
 }
 
 export function receivedMovieByID(json) {
-  return { type: types.RECEIVED_MOVIE_BY_ID, movie: json.movie }
+  return {type: types.RECEIVED_MOVIE_BY_ID, movie: json.movie}
 }
 
 export function fetchMovieByID(id, history) {
@@ -138,7 +162,7 @@ export function searchMoviesError(e) {
 }
 
 export function beginPaging() {
-  return { type: types.BEGIN_PAGING }
+  return {type: types.BEGIN_PAGING}
 }
 
 export function paginate(currState, currPage, filters) {
@@ -190,7 +214,7 @@ export function receivedPagination(currState, currPage, json, dispatch) {
       facets: json.facets,
     }
   } else {
-    return { type: types.NO_OP }
+    return {type: types.NO_OP}
   }
 }
 
@@ -214,7 +238,7 @@ export function submitComment(movieID, comment, token) {
 }
 
 export function receivedCommentSubmissionOk(json) {
-  return { type: types.SUBMIT_COMMENT_SUCCESS, comments: json.comments }
+  return {type: types.SUBMIT_COMMENT_SUCCESS, comments: json.comments}
 }
 
 export function editComment(commentID, update, token, movie_id) {
@@ -238,7 +262,7 @@ export function editComment(commentID, update, token, movie_id) {
 }
 
 export function receivedCommentUpdateOk(json) {
-  return { type: types.UPDATE_COMMENT_SUCCESS, comments: json.comments }
+  return {type: types.UPDATE_COMMENT_SUCCESS, comments: json.comments}
 }
 
 export function deleteComment(comment_id, token, movie_id) {
@@ -261,5 +285,5 @@ export function deleteComment(comment_id, token, movie_id) {
 }
 
 export function applyFacetFilter(facet, key, filter) {
-  return { type: types.PROP_FACET_FILTER, payload: { facet, key, filter } }
+  return {type: types.PROP_FACET_FILTER, payload: {facet, key, filter}}
 }

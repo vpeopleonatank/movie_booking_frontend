@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 
 import {addPersonalInfo, confirmBooking, selectSeats, selectShowing, selectTickets} from '../../actions/bookingActions'
+import moment from "moment";
 
 class Confirmation extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class Confirmation extends React.Component {
         </div>
       );
     }
+    // console.log(moment(this.props.selectedShowing).format('yyyy-MM-dd HH:mm:ss'));
     return (
       <div className="container" id="personal-info-box" style={{backgroundColor: 'rgba(34,34,34,0.3)'}}>
         <h1>Confirm your reservation</h1>
@@ -60,7 +62,8 @@ const mapStateToProps = state => {
     selectedShowing: state.selectedShowing,
     selectedSeats: state.selectedSeats,
     person: state.person,
-    tickets: state.tickets
+    tickets: state.tickets,
+    user: state.user.info.email
   }
 }
 

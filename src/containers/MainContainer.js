@@ -62,11 +62,11 @@ class MainContainer extends Component {
         <Switch>
           {/*<Route path="/booking" exact component={RegionSelection} />*/}
           {/*<Route path="/movies" exact component={MovieSelection} />*/}
-          <Route path="/booking/schedule"  component={ScheduleSelection}/>
-          <Route path="/booking/tickets"  component={TicketSelection}/>
-          <Route path="/booking/seats"  component={PlaceSelection}/>
-          <Route path="/booking/personal-details"  component={PersonalInfo}/>
-          <Route path="/booking/confirmation"  component={Confirmation}/>
+          {/*<Route path="/booking/schedule"  component={ScheduleSelection}/>*/}
+          <Route path="/booking/tickets" component={TicketSelection}/>
+          <Route path="/booking/seats" component={PlaceSelection}/>
+          <Route path="/booking/personal-details" component={PersonalInfo}/>
+          <Route path="/booking/confirmation" component={Confirmation}/>
         </Switch>
       </div>
     )

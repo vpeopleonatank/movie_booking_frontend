@@ -1,6 +1,7 @@
 import LocalServer from '../apis/LocalServer';
 import LocalServer2 from "../apis/LocalServer2";
 import MovieDatabase from "../apis/MovieDatabase";
+import moment from "moment";
 
 export const selectRegion = (region, lang) => {
   return {
@@ -55,6 +56,13 @@ export const selectShowing = (showing) => {
   }
 }
 
+export const selectCurrentDate = (currDate) => {
+  return {
+    type: 'CURRENT_DATE',
+    payload: currDate
+  }
+}
+
 export const selectTickets = (tickets) => {
   return {
     type: 'TICKETS_SELECTED',
@@ -72,11 +80,16 @@ export const selectSeats = (seats) => {
 export const confirmBooking = (booking) => async dispatch => {
   console.log("confirm booking");
   console.log(booking);
+  let bookingDate = `${booking.selectedShowing}`;
+  // const startDateStr = moment(bookingDate).format('YYYY-MM-DD HH:mm')
+  // console.log(startDateStr);
+  console.log(bookingDate);
   await LocalServer2.post('/booking/booking', {
     movie: {
       id: booking.selectedMovie._id
     },
-    showing: booking.selectedShowing,
+    showing: bookingDate,
+    username: booking.user,
     seats: booking.selectedSeats
   });
 
@@ -118,7 +131,7 @@ export const findBookings = (movieId, showing) => async dispatch => {
   const response = await LocalServer2.get('/booking/booking', {
     params: {
       id: movieId,
-      showing: showing
+      showing: `${showing}.000Z`
     }
   });
 

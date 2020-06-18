@@ -1,17 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { withStyles } from "@material-ui/core/styles"
+import {withStyles} from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import AccountPanel from "./AccountPanel"
 import IconButton from "@material-ui/core/IconButton"
 import SearchIcon from "@material-ui/icons/Search"
-import { Link } from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import green from "@material-ui/core/colors/green"
 import leaf from "../assets/mongoleaf.png"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
+import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
 import * as miscActions from "../actions/miscActions"
-import { compose } from "redux"
+import AirplanemodeActive from '@material-ui/icons/AirplanemodeActive';
+import {compose} from "redux"
+import {useHistory} from "react-router-dom";
 
 const mongo = green[500]
 
@@ -24,6 +26,12 @@ const styles = {
     alignItems: "center",
     color: "white",
   },
+  lichchieu: {
+    display: "inline-flex",
+    alignItems: "center",
+    color: "white",
+  },
+
   appbar: {
     display: "flex",
     height: "120px",
@@ -50,8 +58,14 @@ const styles = {
   },
 }
 
+
 function Header(props) {
-  const { classes } = props
+  function onClickLichChieu() {
+    props.history.push('/phim-chieu-theo-gio');
+    // props.miscActions.toggleDrawer();
+  }
+
+  const {classes} = props
   return (
     <div className={classes.root}>
       <div className={classes.appbar}>
@@ -59,10 +73,17 @@ function Header(props) {
           className={classes.drawer}
           onClick={props.miscActions.toggleDrawer}
         >
-          <SearchIcon />
+          <SearchIcon/>
+        </IconButton>
+        <IconButton
+          className={classes.lichchieu}
+          onClick={onClickLichChieu}
+        >
+          <AirplanemodeActive/>
+          Date Booking
         </IconButton>
         <Typography className={classes.typography} type="title">
-          <Link style={{ textDecoration: "none", color: mongo }} to="/">
+          <Link style={{textDecoration: "none", color: mongo}} to="/">
             Mta Cinema
             <img
               id="mongoleaf"
@@ -73,7 +94,7 @@ function Header(props) {
             />
           </Link>
         </Typography>
-        <AccountPanel />
+        <AccountPanel/>
       </div>
     </div>
   )
@@ -83,7 +104,7 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-function mapStateToProps({ misc }) {
+function mapStateToProps({misc}) {
   return {
     misc,
   }
@@ -96,6 +117,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default compose(
+  withRouter,
   withStyles(styles),
   connect(
     mapStateToProps,

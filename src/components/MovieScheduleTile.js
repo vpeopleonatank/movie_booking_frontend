@@ -2,11 +2,13 @@ import React, {Component} from "react"
 import PropTypes from "prop-types"
 import {withStyles} from "@material-ui/core/styles"
 import green from "@material-ui/core/colors/green"
-import {Link} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import * as movieActions from "../actions/movieActions"
+import * as bookingActions from "../actions/bookingActions"
 import {compose} from "redux"
+import moment from "moment";
 
 const mongo = green[500]
 
@@ -166,17 +168,28 @@ class MovieScheduleTile extends Component {
     this.props.movieActions.movieDetail(this.props.movie._id)
   }
 
+  handleClickSchedule = (e) => {
+    let date = `${this.props.currentDate}T${e.target.innerHTML}:00`;
+    this.props.bookingActions.selectShowing(date)
+    this.props.movieActions.movieSchedule(this.props.movie._id)
+    this.props.history.push('/booking');
+  }
+
   render() {
     const {classes, movie} = this.props
     const castText = movie.cast ? `Starring: ${movie.cast.join(", ")}` : ""
     const imdb =
       movie.imdb && movie.imdb.rating ? `IMDB: ${movie.imdb.rating} / 10` : ""
 
-    const castBox = movie.cast ? (
+    const scheduleBox = (movie.cast && typeof(movie.filmSchedule) !== 'undefined') ? (
       <div>
         <div className={classes.skittlesContainer}>
-          {movie.cast.map((elem, ix) => (
-            <span key={ix} className={classes.writerSkittles}>
+          {movie.filmSchedule.time.map((elem, ix) => (
+            <span
+              key={ix}
+              className={classes.writerSkittles}
+              onClick={e => this.handleClickSchedule(e)}
+            >
               {elem}
             </span>
 
@@ -226,7 +239,7 @@ class MovieScheduleTile extends Component {
             </div>
           </div>
           <div className={classes.rightHalf}>
-            {castBox}
+            {scheduleBox}
 
           </div>
 
@@ -240,16 +253,24 @@ MovieScheduleTile.propTypes = {
   movie: PropTypes.object.isRequired,
 }
 
+function mapStateToProps({currentDate}) {
+  return {
+    currentDate
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     movieActions: bindActionCreators(movieActions, dispatch),
+    bookingActions: bindActionCreators(bookingActions, dispatch),
   }
 }
 
 export default compose(
+  withRouter,
   withStyles(styles),
   connect(
-    () => ({}),
+    mapStateToProps,
     mapDispatchToProps
   )
 )(MovieScheduleTile)

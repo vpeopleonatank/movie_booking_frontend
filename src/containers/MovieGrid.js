@@ -7,9 +7,12 @@ import MovieTile from "../components/MovieTile"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import * as movieActions from "../actions/movieActions"
+import * as miscActions from "../actions/miscActions"
 import { compose } from "redux"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import Facets from "../components/Facets"
+import IconButton from "@material-ui/core/IconButton";
+import AirplanemodeActive from "@material-ui/icons/AirplanemodeActive";
 
 const styles = theme => ({
   root: {
@@ -91,7 +94,11 @@ class MovieGrid extends Component {
       )
     }
   }
-
+  onClickLichChieu = () => {
+    this.props.history.push('/phim-chieu-theo-gio');
+    // this.props.history.goBack();
+    this.props.miscActions.toggleDrawer();
+  }
   render() {
     const { classes } = this.props
     const movies = this.props.movies.shownMovies
@@ -113,6 +120,13 @@ class MovieGrid extends Component {
           onScroll={this.onScroll}
           id="scroll"
         >
+          <IconButton
+            className={classes.lichchieu}
+            onClick={this.onClickLichChieu}
+          >
+            <AirplanemodeActive/>
+            Date Booking
+          </IconButton>
           <Facets />
           <GridList
             cellHeight={600}
@@ -141,6 +155,7 @@ function mapStateToProps({ movies, errors }) {
 function mapDispatchToProps(dispatch) {
   return {
     movieActions: bindActionCreators(movieActions, dispatch),
+    miscActions: bindActionCreators(miscActions, dispatch),
   }
 }
 

@@ -2,7 +2,7 @@ import {
   TOGGLE_DRAWER,
   CHECK_ADMIN,
   CHECK_ADMIN_FAIL,
-  CHECK_ADMIN_SUCCESS,
+  CHECK_ADMIN_SUCCESS, OPEN_LICH_CHIEU,
 } from "../actions/actionTypes"
 
 const initialState = {
@@ -14,6 +14,8 @@ export default function misc(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_DRAWER:
       return { ...state, open: !state.open }
+    case OPEN_LICH_CHIEU:
+      return {...state, open: !state.open}
 
     case CHECK_ADMIN:
       console.log("checking admin begin")

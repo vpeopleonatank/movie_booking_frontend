@@ -12,7 +12,7 @@ class Navigation extends React.Component
             <div className="nav">                    
                 {/*<NavLink to="/" exact className="nav-button" activeStyle={{backgroundColor: '#960018' }}>REGION</NavLink>*/}
                 {/*<NavLink to="/movies" className="nav-button" activeStyle={{backgroundColor: '#960018' }}>MOVIE</NavLink>*/}
-                <NavLink to="/booking/schedule" className="nav-button" activeStyle={{backgroundColor: '#960018' }}>SCHEDULE</NavLink>
+                {/*<NavLink to="/booking/schedule" className="nav-button" activeStyle={{backgroundColor: '#960018' }}>SCHEDULE</NavLink>*/}
                 <NavLink to="/booking/tickets" className="nav-button" activeStyle={{backgroundColor: '#960018' }}>TICKETS</NavLink>
                 <NavLink to="/booking/seats" className="nav-button" activeStyle={{backgroundColor: '#960018' }}>SEATS</NavLink>
                 <NavLink to="/booking/personal-details" className="nav-button" activeStyle={{backgroundColor: '#960018' }}>PERSONAL INFO</NavLink>
